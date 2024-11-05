@@ -45,3 +45,10 @@
             {:type "postfix-rule"
              :postfix {:a "ゃ" :i "ぃ" :e "ぇ" :u "ゅ" :o "ょ"}
              :matrix {:ky "き" :sy "し"}}))))
+
+(t/deftest handler-raw-rule-test
+  (t/is (= {} (sut/handler-raw-rule nil)))
+
+  (t/is (= {"fu" "ふ"}
+           (sut/handler-raw-rule {:type "raw-rule"
+                                  :matrix {:fu "ふ"}}))))

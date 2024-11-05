@@ -21,12 +21,17 @@
          [(str (name kk) (name pk)) (str kv pv)])
        (into {})))
 
+(defn handler-raw-rule [step]
+  (-> (:matrix step)
+      (update-keys name)))
+
 (defn generate-1 [rules step]
   (merge
    rules
    (condp = (:type step)
      "matrix-rule" (handler-matrix-rule step)
-     "postfix-rule" (handler-postfix-rule step))))
+     "postfix-rule" (handler-postfix-rule step)
+     "raw-rule" (handler-raw-rule step))))
 
 (defn generate
   ([steps]
