@@ -6,8 +6,19 @@
    [clojure.tools.logging :as log])
   (:gen-class))
 
+(defn handler-matrix-rule [step]
+  (->> (mapcat (fn [[key val]]
+                 (map
+                  (fn [b v] (when (some? v) [(str key b) v]))
+                  (:base step)
+                  val))
+               (:matrix step))
+       (into {})))
+
 (defn generate-1 [rules step]
-  rules)
+  (condp = (:type step)
+    "matrix-rule"
+    (handler-matrix-rule step)))
 
 (defn generate
   ([steps]
@@ -21,9 +32,10 @@
   "The entrypoint."
   [& args]
   (log/info args)
-  (-> (first args)
-      io/reader
-      yaml/parse-stream
-      generate
-      json/json-str
-      println))
+  (->> (first args)
+       io/reader
+       yaml/parse-stream
+       generate
+       (into (sorted-map))
+       json/json-str
+       println))
