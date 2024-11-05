@@ -1,0 +1,83 @@
+- type: matrix-rule
+  base: [a, i, u, e, o]
+  matrix:
+    "": [あ, い, う, え, お]
+    k: [か, き, く, け, こ]
+    s: [さ, し, す, せ, そ]
+    t: [た, ち, つ, て, と]
+    n: [な, に, ぬ, ね, の]
+    h: [は, ひ, ふ, へ, ほ]
+    m: [ま, み, む, め, も]
+    y: [や, null, ゆ, null, よ]
+    r: [ら, り, る, れ, ろ]
+    w: [わ, null, null, null, を]
+    g: [が, ぎ, ぐ, げ, ご]
+    z: [ざ, じ, ず, ぜ, ぞ]
+    d: [だ, ぢ, づ, で, ど]
+    b: [ば, び, ぶ, べ, ぼ]
+    p: [ぱ, ぴ, ぷ, ぺ, ぽ]
+
+- type: postfix-rule
+  postfix:
+    a: ゃ
+    i: ぃ
+    e: ぇ
+    u: ゅ
+    o: ょ
+  matrix:
+    ky: き
+    sy: し
+    ty: ち
+    ny: に
+    hy: ひ
+    my: み
+    ry: り
+    gy: ぎ
+    zy: じ
+    by: び
+    py: ぴ
+    x: し
+    c: ち
+
+- type: postfix-rule
+  postfix:
+    a: ぁ
+    i: ぃ
+    u: ぅ
+    e: ぇ
+    o: ぉ
+  matrix:
+    f: ふ
+
+- type: raw-rule
+  matrix:
+    fu: ふ
+    nn: ん
+
+- type: dependent-macro-rule
+  macro:
+    z: ann
+    n: ann
+    k: inn
+    j: unn
+    d: enn
+    l: onn
+  pre: [k, s, t, n, h, f, m, y, r, w, g, z, d, b, p,
+        ky, sy, x, ty, c, ny, hy, my, ry,
+        gy, zy, by, py]
+
+- type: dependent-macro-rule
+  macro:
+    q: ai
+    h: uu
+    w: ei
+    p: ou
+  pre: [k, s, t, n, h, f, m, y, r, w, g, z, d, b, p,
+        ky, sy, x, ty, c, ny, hy, my, ry,
+        gy, zy, by, py]
+
+- type: raw-rule
+  matrix:
+    zc: ざ
+    zv: ざい
+    zx: ぜい
