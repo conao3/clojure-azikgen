@@ -7,4 +7,4 @@
   (t/is (= true true)))
 
 (t/deftest generate-test
-  (t/is (= nil (sut/generate nil nil))))
+  (t/is (= nil (sut/generate nil))))

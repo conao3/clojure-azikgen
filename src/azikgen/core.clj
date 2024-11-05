@@ -6,8 +6,16 @@
    [clojure.tools.logging :as log])
   (:gen-class))
 
-(defn generate [rules defs]
+(defn generate-1 [rules step]
   rules)
+
+(defn generate
+  ([steps]
+   (generate nil steps))
+  ([rules steps]
+   (if (next steps)
+     (recur (generate-1 rules (first steps)) (next steps))
+     (generate-1 rules (first steps)))))
 
 (defn -main
   "The entrypoint."
@@ -16,6 +24,6 @@
   (-> (first args)
       io/reader
       yaml/parse-stream
-      (->> (generate nil))
+      generate
       json/json-str
       println))
