@@ -27,3 +27,21 @@
              :base ["a" "i" "u" "e" "o"]
              :matrix {"" ["あ" "い" "う" "え" "お"]
                       "k" ["か" "き" "く" "け" "こ"]}}))))
+
+(t/deftest handler-postfix-rule-test
+  (t/is (= {} (sut/handler-postfix-rule nil)))
+
+  (t/is (= {"kya" "きゃ"
+            "kyi" "きぃ"
+            "kyu" "きゅ"
+            "kye" "きぇ"
+            "kyo" "きょ"
+            "sya" "しゃ"
+            "syi" "しぃ"
+            "syu" "しゅ"
+            "sye" "しぇ"
+            "syo" "しょ"}
+           (sut/handler-postfix-rule
+            {:type "postfix-rule"
+             :postfix {:a "ゃ" :i "ぃ" :e "ぇ" :u "ゅ" :o "ょ"}
+             :matrix {:ky "き" :sy "し"}}))))
