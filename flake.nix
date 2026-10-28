@@ -31,7 +31,7 @@
             projectSrc = ./.;
             name = "com.github.conao3/azikgen";
             main-ns = "azikgen.core";
-            jdkRunner = pkgs.jdk17_headless;
+            jdkRunner = pkgs.jdk25_headless;
           };
 
           native = cljpkgs.mkGraalBin {
